@@ -20,10 +20,12 @@ public:
 
 private:
     // 这个Window_mgr追踪的Screen，默认情况下，一个Window_mgr包含一个标准尺寸的空白Screen
-    vector <Screen> screens{Screen(24, 80, ' ')};
+    vector<Screen> screens{Screen(24, 80, ' ')};
 
 };
 
+// 这里的ScreenIndex之前不必再次说明ScreenIndex是在Window_mgr的作用域内了；
+// 这是因为，函数名前面的类名已经说明了接下来的参数列表和函数体是在类的作用域内了
 void Window_mgr::clear(Window_mgr::ScreenIndex i) {
     // s是Screen的引用，指向我们想清空的那个屏幕
     Screen &s = screens[i];
