@@ -18,9 +18,12 @@ public:
 
     Screen &get(ScreenIndex);
 
+    // 向窗口添加一个Screen，返回它的编号
+    ScreenIndex addScreen(const Screen &);
+
 private:
     // 这个Window_mgr追踪的Screen，默认情况下，一个Window_mgr包含一个标准尺寸的空白Screen
-    vector<Screen> screens{Screen(24, 80, ' ')};
+    vector <Screen> screens{Screen(24, 80, ' ')};
 
 };
 
@@ -29,14 +32,21 @@ private:
 void Window_mgr::clear(Window_mgr::ScreenIndex i) {
     // s是Screen的引用，指向我们想清空的那个屏幕
     Screen &s = screens[i];
-//    cout << "s.height:" << (s.height) << " s.width:" << (s.width) << endl;
-    //将那个选定的screen置为空白
+    //将那个选定的screen置为空白,这里为了测试时看得明白，将空白字符改为字符B
     s.contents = string(s.height * s.width, 'B');
 }
 
 Screen &Window_mgr::get(Window_mgr::ScreenIndex i) {
-//    cout << "&screen[" << i << "]:" << &screens[i] << endl;
     return screens[i];
+}
+
+
+/* 向窗口添加一个Screen，返回它的编号
+ * 函数的返回类型在类的作用域之外，返回类型中用到类的作用域之内的变量必须指明作用域
+ * */
+Window_mgr::ScreenIndex Window_mgr::addScreen(const Screen &s) {
+    screens.push_back(s);
+    return screens.size() - 1;
 }
 
 

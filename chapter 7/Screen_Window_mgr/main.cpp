@@ -11,5 +11,8 @@ int main() {
     wm.clear(0);
     cout << "screen.get(): " << screen.get() << " wm.get(0).get(): " << wm.get(0).get() << endl;
 
+    Screen screen1(24, 12, 'D');
+    Window_mgr::ScreenIndex si = wm.addScreen(screen1);
+    cout << "si:" << si << endl;
     return 0;
 }
